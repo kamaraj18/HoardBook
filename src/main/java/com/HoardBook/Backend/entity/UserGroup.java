@@ -18,7 +18,7 @@ public class UserGroup {
 
     @ManyToOne
     @MapsId("userId") // maps the FK field "userId" to corresponding Id "user" field.
-    @JoinColumn(name = "user_id", nullable = false) //@JoinColumn - creates the user_id(FK) column in this table
+    @JoinColumn(name = "user_id", nullable = false) // @JoinColumn - creates the user_id(FK) column in this table
     private User user;
 
     @ManyToOne
