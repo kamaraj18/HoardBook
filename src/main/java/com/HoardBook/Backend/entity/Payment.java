@@ -49,5 +49,4 @@ public class Payment {
     @JoinColumn(name="last_modified_by")
     private User lastModifiedBy;
 
-
 }
