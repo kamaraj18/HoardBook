@@ -13,10 +13,13 @@ import java.util.Optional;
 @Repository
 public interface UserGroupRepository extends JpaRepository<UserGroup, UserGroupId> {
 
+    // WHY: Powers the members list screen
    List<UserGroup> findByGroup_IdAndStatus(Long groupId, Status status);
 
+   // WHY: Find membership record for remove/transfer admin
    Optional<UserGroup> findByGroup_IdAndUser_Id(Long groupId, Long userId);
 
-    boolean existsByGroup_IdAndUser_Id(Long groupId, Long userId);
+    // WHY: Prevent duplicate memberships on join accept
+   boolean existsByGroup_IdAndUser_Id(Long groupId, Long userId);
 
 }
