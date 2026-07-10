@@ -14,7 +14,6 @@ public interface GroupRepository extends JpaRepository<Group, Long> {
     //WHY: checks the group with specific invite code exists if yes, return true otherwise false
     boolean existsByInviteCode(String inviteCode);
 
-    //WHY: gives the groups belongs to specific user
-    @Query("SELECT g FROM Group g JOIN UserGroup ug ON ug.group = g WHERE ug.user.id = :userId AND ug.status = 'ACTIVE' AND g.isActive = true")
+    @Query("SELECT ug.group FROM UserGroup ug WHERE ug.user.id = :userId AND ug.status = com.HoardBook.Backend.enums.Status.ACTIVE AND ug.group.isActive = true")
     List<Group> findAllGroupsByUserId(@Param("userId") Long userId);
 }

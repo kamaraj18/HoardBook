@@ -16,10 +16,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     boolean existsByEmail(String email);
 
-    @Query("SELECT u FROM User u " +
-            "JOIN UserGroup ug ON ug.user = u " +
-            "WHERE ug.group.id = :groupId " +
-            "AND ug.status = 'ACTIVE'")
+    @Query("SELECT ug.user FROM UserGroup ug WHERE ug.group.id = :groupId AND ug.status = com.HoardBook.Backend.enums.Status.ACTIVE")
     List<User> findActiveGroupMembers(@Param("groupId") Long groupId);
 
 }
