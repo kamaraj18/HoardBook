@@ -18,7 +18,10 @@ public interface CollectionCycleRepository extends JpaRepository<CollectionCycle
     //SQL : SELECT * FROM CollectionCycle WHERE group_id = groupId AND cycle_id = cycleId;
     //WHY : Fetches Collection cycle records belongs to specific group
     //API endpoint - GET /api/groups/{groupId}/collection-cycles/{cycleId}
-    Optional<CollectionCycle> findByGroup_IdAndCycle_Id(Long groupId, Long cycleId);
+    Optional<CollectionCycle> findByIdAndGroup_Id(Long cycleId, Long groupId);
+
+    // WHY: Find the latest cycle to determine next cycle number
+    Optional<CollectionCycle> findTopByGroup_IdOrderByCycleNumberDesc(Long groupId);
 
 
 

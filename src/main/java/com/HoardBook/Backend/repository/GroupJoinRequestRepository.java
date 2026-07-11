@@ -14,13 +14,16 @@ public interface GroupJoinRequestRepository extends JpaRepository<GroupJoinReque
     //SQL : SELECT * FROM group_join_requests WHERE group_id = groupId AND request_status = status
 
     //WHY : Lists the join requests of a specific group where the status is PENDING
-    List<GroupJoinRequest> findByGroup_IdAndStatus(Long groupId, RequestStatus status);
+    List<GroupJoinRequest> findByGroup_IdAndRequestStatus(Long groupId, RequestStatus status);
 
 
     //SQL : SELECT * FROM group_join_requests WHERE group_id = groupId AND group_join_request_id = requestId
-
     // WHY : finds the specific join request belongs to the given group
-    Optional<GroupJoinRequest> findByGroup_IdAndGroupJoinRequest_Id(Long groupId, Long requestId);
+    Optional<GroupJoinRequest> findByIdAndGroup_Id(Long requestId, Long groupId);
+
+    // WHY: Prevent duplicate join requests from same user
+    boolean existsByGroup_IdAndRequestedBy_IdAndRequestStatus(
+            Long groupId, Long userId, RequestStatus status);
 
 
 }
